@@ -1,0 +1,14 @@
+{
+    "movies": [
+        {
+            "movie_id": "id_123",
+            "movie_name": "name_123_",
+            "customers": []
+        },
+        {
+            "movie_id": "id_1234",
+            "movie_name": "name_1234",
+            "customers": []
+        }
+    ]
+}
