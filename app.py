@@ -84,6 +84,28 @@ def updateEmp(movieID):
             if p['movie_id'] == movieID:
                 print(movieID)
                 p['movie_name'] = request.json['name']
+                p['movie_id'] = request.json['id']
+        print(database)
+    with open('data.json', 'w+') as json_file:
+        json.dump(database, json_file, indent=4)
+    json_file.close()
+
+    return 'database updated'
+
+
+@app.route('/db/movies/cust/<movieID>', methods=['PUT', 'POST'])
+def updateCust(movieID):
+    with open('data.json') as json_file:
+        database = json.load(json_file)
+        print(database)
+        for p in database['movies']:
+            if p['movie_id'] == movieID:
+                print(movieID)
+                dat = Customer(
+                    request.json['id'],
+                    request.json['name'],
+                )
+                p['customers'].append(dat.__dict__)
         print(database)
     with open('data.json', 'w+') as json_file:
         json.dump(database, json_file, indent=4)
@@ -106,6 +128,28 @@ def deleteEmp(movieID):
     json_file.close()
 
     return 'movie deleted'
+
+
+@app.route('/db/movies/<movieID>/<custID>', methods=['DELETE'])
+def deleteCust(movieID, custID):
+    with open('data.json') as json_file:
+        database = json.load(json_file)
+        db = database['movies']
+        for i in xrange(len(db)):
+            if db[i]["movie_id"] == movieID:
+                print(movieID)
+                dbc = db[i]["movie_id"]["customers"]
+                print(dbc)
+                for j in xrange(len(dbc)):
+                    if dbc[j]["customer_id"] == custID:
+                        print(custID)
+                        dbc.pop(j)
+                        break
+    with open('data.json', 'w+') as json_file:
+        json.dump(database, json_file, indent=4)
+    json_file.close()
+
+    return 'customer deleted'
 
 
 if __name__ == '__main__':

@@ -1,14 +1,22 @@
 {
     "movies": [
         {
-            "movie_id": "id_123",
-            "movie_name": "name_123_",
-            "customers": []
-        },
-        {
-            "movie_id": "id_1234",
-            "movie_name": "name_1234",
-            "customers": []
+            "movie_id": "id_1",
+            "movie_name": "name_1",
+            "customers": [
+                {
+                    "customer_id": "id_1",
+                    "customer_name": "name_1"
+                },
+                {
+                    "customer_id": "id_12",
+                    "customer_name": "name_12"
+                },
+                {
+                    "customer_id": "id_123",
+                    "customer_name": "name_123"
+                }
+            ]
         }
     ]
 }
